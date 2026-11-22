@@ -660,6 +660,35 @@
       border-top: 1px solid rgba(185,154,98,.3);
     }
 
+    /* GESTES D'AFFECTION */
+
+    .hug-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .hug-buttons .elegant-button {
+      font-size: 12px;
+      padding: 14px 22px;
+    }
+
+    .float-emoji {
+      position: fixed;
+      z-index: 300;
+      pointer-events: none;
+      font-size: 28px;
+      animation: floatUp 2.6s ease-out forwards;
+    }
+
+    @keyframes floatUp {
+      0% { opacity: 0; transform: translateY(0) scale(.6); }
+      15% { opacity: 1; }
+      100% { opacity: 0; transform: translateY(-260px) scale(1.4); }
+    }
+
     @media (max-width: 600px) {
       .hero {
         min-height: 85svh;
@@ -868,6 +897,22 @@
       <button class="music-button" id="musicToggle">
         ♫ Lancer la musique
       </button>
+    </section>
+
+    <!-- GESTES D'AFFECTION -->
+    <section class="content-section">
+      <div class="eyebrow">Un peu de tendresse</div>
+      <h2 class="section-title">Des gestes pour toi</h2>
+      <div class="gold-line"></div>
+      <p>Si je pouvais, je te les offrirais en vrai. En attendant, touche-les.</p>
+
+      <div class="hug-buttons">
+        <button class="elegant-button" data-gesture="hug">🤗 Un câlin</button>
+        <button class="elegant-button" data-gesture="kiss">😘 Un bisou</button>
+        <button class="elegant-button" data-gesture="flowers">💐 Des fleurs</button>
+        <button class="elegant-button" data-gesture="love">💗 Un cœur</button>
+        <button class="elegant-button" data-gesture="stars">✨ Des étoiles</button>
+      </div>
     </section>
 
     <!-- EASTER EGGS -->
@@ -1233,6 +1278,48 @@
     }
 
     window.addEventListener('scroll', displayFloatingMessage, { passive: true });
+
+
+    /* --------------------------------
+       GESTES D'AFFECTION
+    -------------------------------- */
+
+    const gestures = {
+      hug:     { emojis: ['🤗', '💞', '🫶'], text: 'Un énorme câlin virtuel, en attendant le vrai. 🤗' },
+      kiss:    { emojis: ['😘', '💋', '💕'], text: 'Un bisou rien que pour toi. 😘' },
+      flowers: { emojis: ['💐', '🌸', '🌷', '🌹'], text: 'Un bouquet pour tes 18 ans. 💐' },
+      love:    { emojis: ['💗', '❤️', '💖', '💝'], text: 'Tout mon cœur, pour toi. 💗' },
+      stars:   { emojis: ['✨', '⭐', '🌟'], text: 'Que ta vie soit pleine d\'étoiles. ✨' }
+    };
+
+    function spawnEmojis(list, count, originX, originY) {
+      for (let i = 0; i < count; i++) {
+        const el = document.createElement('span');
+        el.className = 'float-emoji';
+        el.textContent = list[Math.floor(Math.random() * list.length)];
+        el.style.left = (originX + (Math.random() - 0.5) * 180) + 'px';
+        el.style.top = (originY + (Math.random() - 0.5) * 40) + 'px';
+        el.style.animationDelay = (Math.random() * 0.5) + 's';
+        document.body.appendChild(el);
+        setTimeout(() => el.remove(), 3300);
+      }
+    }
+
+    document.querySelectorAll('[data-gesture]').forEach(button => {
+      button.addEventListener('click', () => {
+        const gesture = gestures[button.dataset.gesture];
+        const rect = button.getBoundingClientRect();
+        spawnEmojis(gesture.emojis, 14, rect.left + rect.width / 2, rect.top);
+        showPopup(gesture.text);
+      });
+    });
+
+    // Petits cœurs à chaque tape sur la page (hors boutons et fenêtres)
+    document.addEventListener('click', event => {
+      if (!invitationOpened) return;
+      if (event.target.closest('button, a, .popup-overlay')) return;
+      spawnEmojis(['💗', '✨', '🤍'], 2, event.clientX, event.clientY);
+    });
   </script>
 
 </body>
