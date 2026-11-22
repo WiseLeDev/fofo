@@ -3,309 +3,1123 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#f6e9e5">
-<title>Pour Faustine ♡</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f5eee5">
+<title>Le Bal de Faustine — 18 ans</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet">
+
 <style>
 :root {
- --paper:#fffaf6;--rose:#e8b9b5;--pink:#f4d9d4;
- --wine:#713f4b;--ink:#49353a;--muted:#947c7d;
+  --ivory: #f8f2e9;
+  --paper: #fffaf2;
+  --pink: #d8a6a5;
+  --pink-dark: #a96f78;
+  --gold: #b69a62;
+  --gold-light: #dfc995;
+  --ink: #51443d;
+  --muted: #88776b;
+  --shadow: rgba(75, 52, 41, .15);
 }
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:#f7eeea;color:var(--ink);font-family:Georgia,serif}
-body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.15;background-image:radial-gradient(#b88d8b .7px,transparent .7px);background-size:12px 12px}
-button{font:inherit;cursor:pointer}
-.hero{min-height:100vh;display:grid;place-items:center;text-align:center;padding:30px;background:radial-gradient(ellipse,#fffaf6,#f4ded9 65%,#e9c7c1);position:relative;overflow:hidden}
-.hero:before,.hero:after{content:"✿";position:absolute;color:white;font-size:220px;opacity:.3;animation:float 7s infinite ease-in-out}
-.hero:before{top:0;left:3%}.hero:after{bottom:0;right:3%}
-.hero-content{position:relative;z-index:2;max-width:700px}
-.eyebrow,.kicker{font:10px Arial;letter-spacing:4px;text-transform:uppercase;color:#ad7d7d}
-h1{font-size:clamp(65px,13vw,115px);font-weight:400;font-style:italic;color:var(--wine);margin:25px 0}
-.hero p{font-size:19px;line-height:1.8;color:#765b60}
-.primary{border:0;background:var(--wine);color:white;border-radius:40px;padding:15px 27px;box-shadow:0 8px 25px #713f4b30;transition:.3s}
-.primary:hover{transform:translateY(-3px);background:#512c37}
-main{max-width:1050px;margin:auto;padding:0 20px 70px}
-.section{padding:80px 0 20px}
-.section-head{text-align:center;max-width:650px;margin:0 auto 35px}
-h2{font-size:clamp(36px,7vw,55px);font-weight:400;font-style:italic;color:var(--wine);margin:12px 0}
-.section-head p{line-height:1.7;color:var(--muted)}
-.paper{background:var(--paper);padding:clamp(25px,5vw,55px);box-shadow:0 15px 40px #76504b12;border:1px solid #ead8d1}
-.letter{max-width:760px;margin:auto;line-height:2;font-size:18px}
-.signature{text-align:right;font-style:italic;color:var(--wine);font-size:25px}
-.timeline{max-width:720px;margin:auto}
-.moment{display:grid;grid-template-columns:35px 1fr;gap:15px;margin-bottom:28px}
-.dot{width:10px;height:10px;border-radius:50%;background:var(--wine);margin:8px 0 0 10px;box-shadow:0 0 0 5px #ead4d0}
-.moment h3{font-size:22px;font-weight:400;font-style:italic;color:var(--wine);margin:0 0 7px}
-.moment p{line-height:1.7;color:var(--muted);margin:0}
-.polaroids{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:25px}
-.polaroid{background:#fffdf9;padding:12px 12px 18px;box-shadow:0 8px 22px #60404820;transform:rotate(var(--r));transition:.3s}
-.polaroid:hover{transform:rotate(0) translateY(-7px)}
-.photo{aspect-ratio:4/4.5;background:linear-gradient(145deg,#f5e2dd,#e8c8c3);overflow:hidden;display:grid;place-items:center;color:#98777a}
-.photo img{width:100%;height:100%;object-fit:cover;cursor:zoom-in}
-.polaroid figcaption{text-align:center;font-style:italic;color:#79545a;padding-top:13px}
-.reasons{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:13px}
-.reason{min-height:125px;border:1px solid #e8d2cc;background:#fffaf6;color:var(--wine);padding:17px 12px;transition:.3s}
-.reason:hover{transform:translateY(-4px);background:#f6e2dd}
-.reason .num{display:block;font:10px Arial;letter-spacing:2px;color:#b48c87;margin-bottom:12px}
-.reason .back{display:none;font:13px/1.5 Arial;color:#765b60}
-.reason.open .front{display:none}.reason.open .back{display:block}
-.final{background:linear-gradient(145deg,#713f4b,#4c2e3a);color:white;text-align:center;padding:65px 25px;position:relative;overflow:hidden}
-.final h2{color:#fff4ed}
-.final p{max-width:610px;margin:auto;line-height:1.9;color:#f4deda;font-size:18px}
-.date{margin-top:30px;font:11px Arial;letter-spacing:4px;color:#e5c2b5}
-.lightbox{position:fixed;inset:0;background:#291820ed;z-index:2000;display:flex;flex-direction:column;justify-content:center;align-items:center;opacity:0;visibility:hidden;transition:.5s;padding:20px}
-.lightbox.active{opacity:1;visibility:visible}
-.lightbox img{max-width:95%;max-height:75vh;border:10px solid white;animation:appear .5s}
-.lightbox p{color:white;font-style:italic}
-footer{text-align:center;padding:40px;color:#a88b89;font:11px Arial;letter-spacing:2px}
-#birthday-gate{position:fixed;inset:0;z-index:3000;display:grid;place-items:center;text-align:center;padding:20px;background:radial-gradient(ellipse,#fffaf7,#f3d8d4 60%,#d8aeb0);transition:opacity 1.5s,visibility 1.5s}
-#birthday-gate.hidden{opacity:0;visibility:hidden;pointer-events:none}
-.gate-card{width:min(650px,100%);padding:40px 20px;background:#fffaf4e8;border:1px solid white;box-shadow:0 25px 80px #713f4b20;position:relative}
-.gate-title{font-size:clamp(38px,8vw,65px);font-style:italic;font-weight:400;color:var(--wine);margin:20px 0}
-.gate-copy{line-height:1.7;color:#85666a}
-.envelope{font-size:65px;animation:pulse 2s infinite}
-.countdown{display:flex;justify-content:center;gap:12px;margin:25px 0}
-.time{min-width:65px;padding:13px 5px;background:#f8e9e5;border:1px solid #ecd4ce}
-.time strong{display:block;font:30px Arial;color:var(--wine);font-weight:300}
-.time span{font:9px Arial;letter-spacing:1px;color:#a17d7e}
-.gate-note{font-style:italic;color:#956f75}
-.floating-heart{position:fixed;bottom:-30px;z-index:100;pointer-events:none;color:#d58b9b;animation:rise 6s linear forwards}
-.sparkle{position:fixed;pointer-events:none;z-index:5;color:#d69ba3;animation:rise 5s linear forwards}
-#surprise-message{font-style:italic;color:var(--wine);font-size:19px;min-height:35px;margin-top:20px;text-align:center}
-.music{position:fixed;right:15px;bottom:15px;z-index:100;background:#fffaf4;border:1px solid #e6cfc8;border-radius:30px;padding:10px 15px;color:var(--wine)}
-@keyframes float{50%{transform:translateY(-20px) rotate(15deg)}}
-@keyframes pulse{50%{transform:translateY(-8px) scale(1.05)}}
-@keyframes rise{to{transform:translateY(-110vh) rotate(35deg);opacity:0}}
-@keyframes appear{from{transform:scale(.8);opacity:0}to{transform:scale(1);opacity:1}}
-@media(max-width:450px){.time{min-width:55px}.time strong{font-size:24px}.section{padding-top:60px}}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background:
+    radial-gradient(ellipse at 10% 10%, rgba(222,194,177,.28), transparent 35%),
+    radial-gradient(ellipse at 90% 85%, rgba(214,173,177,.18), transparent 35%),
+    var(--ivory);
+  font-family: "Cormorant Garamond", serif;
+  font-size: 19px;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 10px;
+  border: 1px solid rgba(182,154,98,.55);
+  pointer-events: none;
+  z-index: 20;
+}
+
+button { font: inherit; }
+
+.hidden { display: none !important; }
+
+/* Décor général */
+.ornament {
+  color: var(--gold);
+  letter-spacing: .35em;
+  text-align: center;
+  font-size: 20px;
+  margin: 14px 0;
+}
+
+.eyebrow {
+  font-family: Cinzel, serif;
+  font-size: 10px;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.script {
+  font-family: "Great Vibes", cursive;
+  color: var(--pink-dark);
+  font-weight: 400;
+}
+
+/* Écran du compte à rebours */
+#countdown-screen {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 35px 20px;
+  text-align: center;
+}
+
+.countdown-card {
+  width: min(590px, 100%);
+  padding: 55px 30px;
+  position: relative;
+  background: rgba(255,250,242,.82);
+  border: 1px solid var(--gold);
+  outline: 1px solid rgba(182,154,98,.45);
+  outline-offset: 8px;
+  box-shadow: 0 18px 60px var(--shadow);
+}
+
+.countdown-card::before,
+.countdown-card::after {
+  content: "❧";
+  position: absolute;
+  color: var(--gold);
+  font-size: 35px;
+}
+.countdown-card::before { top: 10px; left: 17px; }
+.countdown-card::after { bottom: 10px; right: 17px; transform: rotate(180deg); }
+
+.countdown-card h1 {
+  font-size: clamp(38px, 8vw, 65px);
+  font-weight: 400;
+  margin: 12px 0;
+}
+
+.countdown-card .script {
+  font-size: clamp(35px, 8vw, 52px);
+}
+
+.timer {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin: 35px auto 22px;
+}
+
+.time-unit {
+  min-width: 75px;
+  padding: 12px 8px;
+  border-top: 1px solid var(--gold-light);
+  border-bottom: 1px solid var(--gold-light);
+}
+
+.time-unit strong {
+  display: block;
+  font-family: Cinzel, serif;
+  font-size: 27px;
+  font-weight: 400;
+  color: var(--pink-dark);
+}
+
+.time-unit span {
+  display: block;
+  margin-top: 5px;
+  font-family: Cinzel, serif;
+  font-size: 9px;
+  letter-spacing: .12em;
+  color: var(--muted);
+}
+
+.countdown-note {
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* Ouverture de l'invitation */
+#invitation-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  padding: 25px;
+  background:
+    radial-gradient(ellipse at center, rgba(255,250,242,.96), rgba(229,211,195,.96));
+  transition: opacity 1.2s ease, visibility 1.2s ease;
+}
+
+#invitation-screen.dismissed {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.envelope-scene {
+  width: min(480px, 92vw);
+  text-align: center;
+  perspective: 1000px;
+}
+
+.invitation-heading {
+  margin-bottom: 30px;
+  line-height: 1.5;
+}
+
+.invitation-heading .script {
+  font-size: 43px;
+}
+
+.envelope {
+  height: 285px;
+  position: relative;
+  margin: auto;
+  cursor: pointer;
+  filter: drop-shadow(0 20px 18px rgba(74,48,40,.17));
+  transform-style: preserve-3d;
+}
+
+.envelope-back {
+  position: absolute;
+  inset: 0;
+  background: #e7c9c1;
+  border: 1px solid #c7a68e;
+}
+
+.envelope-letter {
+  position: absolute;
+  z-index: 2;
+  left: 8%;
+  right: 8%;
+  top: 12px;
+  height: 245px;
+  padding: 30px 12px;
+  background: var(--paper);
+  border: 1px solid var(--gold-light);
+  transition: transform 1.5s cubic-bezier(.2,.8,.2,1);
+}
+
+.envelope-letter .script {
+  font-size: 38px;
+}
+
+.envelope-letter p {
+  font-family: Cinzel, serif;
+  font-size: 10px;
+  letter-spacing: .15em;
+}
+
+.envelope-front {
+  position: absolute;
+  z-index: 4;
+  inset: 0;
+  background: #d9b7ad;
+  clip-path: polygon(0 0, 50% 58%, 100% 0, 100% 100%, 0 100%);
+  border: 1px solid #c7a68e;
+}
+
+.envelope-flap {
+  position: absolute;
+  z-index: 5;
+  inset: 0;
+  background: #ebd2c8;
+  clip-path: polygon(0 0, 100% 0, 50% 60%);
+  transform-origin: top center;
+  transition: transform 1s ease;
+  backface-visibility: hidden;
+}
+
+.wax-seal {
+  position: absolute;
+  z-index: 6;
+  left: 50%;
+  top: 52%;
+  transform: translate(-50%,-50%);
+  width: 67px;
+  height: 67px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #c98b91, #92515e);
+  border: 3px double #e3b9a9;
+  color: #f8e8d7;
+  font-family: Cinzel, serif;
+  font-size: 20px;
+  box-shadow: 0 3px 8px rgba(80,40,40,.2);
+  transition: opacity .5s ease;
+}
+
+.envelope.open .envelope-flap {
+  transform: rotateX(180deg);
+}
+
+.envelope.open .envelope-letter {
+  transform: translateY(-165px);
+  transition-delay: .5s;
+}
+
+.envelope.open .wax-seal { opacity: 0; }
+
+.open-instruction {
+  margin-top: 45px;
+  color: var(--muted);
+  font-style: italic;
+  font-size: 17px;
+}
+
+.open-button {
+  border: 1px solid var(--gold);
+  background: rgba(255,250,242,.65);
+  padding: 11px 25px;
+  margin-top: 15px;
+  color: var(--pink-dark);
+  font-family: Cinzel, serif;
+  font-size: 10px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background .3s;
+}
+.open-button:hover { background: #f0dfd4; }
+
+/* Site principal */
+#main-site {
+  opacity: 0;
+  transition: opacity 1.5s ease;
+}
+
+#main-site.visible { opacity: 1; }
+
+.site-shell {
+  width: min(1000px, calc(100% - 38px));
+  margin: 35px auto;
+  padding: 12px;
+  border: 1px solid var(--gold);
+  background: rgba(255,250,242,.55);
+  box-shadow: 0 15px 55px var(--shadow);
+}
+
+.site-inner {
+  border: 1px solid rgba(182,154,98,.55);
+  padding: clamp(25px, 6vw, 65px);
+  background:
+    linear-gradient(rgba(255,250,242,.88), rgba(255,250,242,.94)),
+    repeating-linear-gradient(0deg, #eee1d2 0px, #eee1d2 1px, transparent 1px, transparent 4px);
+}
+
+.hero {
+  min-height: 570px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+}
+
+.hero::before, .hero::after {
+  content: "❦";
+  position: absolute;
+  color: rgba(182,154,98,.5);
+  font-size: 55px;
+}
+.hero::before { top: 5px; left: 0; }
+.hero::after { bottom: 5px; right: 0; transform: rotate(180deg); }
+
+.hero h1 {
+  font-weight: 400;
+  font-size: clamp(54px, 11vw, 100px);
+  line-height: .95;
+  margin: 20px 0 5px;
+  color: var(--pink-dark);
+}
+
+.hero .age {
+  font-family: Cinzel, serif;
+  font-size: clamp(65px, 13vw, 115px);
+  line-height: 1;
+  color: var(--gold);
+  margin: 15px 0;
+}
+
+.hero .subtitle {
+  font-size: 22px;
+  font-style: italic;
+  color: var(--muted);
+}
+
+.hero-date {
+  font-family: Cinzel, serif;
+  font-size: 11px;
+  letter-spacing: .3em;
+  color: var(--gold);
+  margin-top: 35px;
+}
+
+.section {
+  padding: 65px 0;
+  border-top: 1px solid var(--gold-light);
+}
+
+.section-heading {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.section-heading h2 {
+  font-weight: 400;
+  font-size: clamp(37px, 7vw, 54px);
+  margin: 8px 0;
+}
+
+.section-heading .script { font-size: 39px; }
+
+.letter {
+  max-width: 700px;
+  margin: auto;
+  padding: clamp(25px, 5vw, 48px);
+  position: relative;
+  background: #fffaf1;
+  border: 1px solid #dfc995;
+  box-shadow: 0 8px 25px rgba(91,64,48,.09);
+}
+
+.letter::before {
+  content: "❧";
+  position: absolute;
+  right: 18px;
+  top: 10px;
+  color: var(--gold-light);
+  font-size: 30px;
+}
+
+.letter p {
+  font-size: 21px;
+  line-height: 1.65;
+  margin: 0 0 17px;
+}
+
+.letter .salutation {
+  font-size: 34px;
+  color: var(--pink-dark);
+  font-family: "Great Vibes", cursive;
+}
+
+.signature {
+  margin-top: 28px;
+  text-align: right;
+  color: var(--pink-dark);
+  font-family: Cinzel, serif;
+  font-size: 11px;
+  letter-spacing: .18em;
+}
+
+/* Album photo */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.photo-frame {
+  padding: 10px 10px 35px;
+  background: #fffdf8;
+  border: 1px solid #e4d6c1;
+  box-shadow: 0 6px 17px rgba(75,52,41,.13);
+  transform: rotate(var(--tilt, -1deg));
+  transition: transform .3s ease, box-shadow .3s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.photo-frame:nth-child(even) { --tilt: 1.5deg; }
+.photo-frame:hover {
+  transform: rotate(0) translateY(-5px);
+  box-shadow: 0 12px 25px rgba(75,52,41,.18);
+}
+
+.photo-frame img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  background: #eee2d7;
+  filter: sepia(.08) saturate(.88);
+}
+
+.photo-caption {
+  position: absolute;
+  bottom: 8px;
+  left: 5px;
+  right: 5px;
+  text-align: center;
+  font-style: italic;
+  color: var(--muted);
+  font-size: 16px;
+}
+
+.gallery-empty {
+  grid-column: 1/-1;
+  padding: 30px;
+  border: 1px dashed var(--gold);
+  text-align: center;
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* 18 attentions */
+.attentions-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 13px;
+}
+
+.attention {
+  min-height: 150px;
+  padding: 20px 14px;
+  background: rgba(255,250,242,.8);
+  border: 1px solid rgba(182,154,98,.55);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform .25s, background .25s;
+}
+
+.attention:hover {
+  transform: translateY(-4px);
+  background: #fffaf2;
+}
+
+.attention-number {
+  font-family: Cinzel, serif;
+  color: var(--gold);
+  font-size: 12px;
+  margin-bottom: 9px;
+}
+
+.attention p {
+  margin: 0;
+  font-size: 19px;
+  line-height: 1.3;
+}
+
+/* Surprises */
+.surprises {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.surprise {
+  padding: 24px 15px;
+  text-align: center;
+  background: #f7eee7;
+  border: 1px solid #d9c19e;
+}
+
+.surprise-icon {
+  font-size: 28px;
+  color: var(--pink-dark);
+}
+
+.surprise button {
+  border: 0;
+  background: transparent;
+  color: var(--pink-dark);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  cursor: pointer;
+  font-style: italic;
+  margin-top: 10px;
+}
+
+.surprise-message {
+  margin-top: 14px;
+  font-size: 18px;
+  line-height: 1.4;
+  color: var(--ink);
+}
+
+/* Musique */
+.music-panel {
+  max-width: 510px;
+  margin: auto;
+  padding: 25px;
+  text-align: center;
+  border: 1px solid var(--gold-light);
+  background: rgba(255,250,242,.7);
+}
+
+.music-panel .script { font-size: 35px; }
+
+.music-button {
+  margin-top: 12px;
+  padding: 12px 24px;
+  border: 1px solid var(--gold);
+  color: var(--pink-dark);
+  background: transparent;
+  font-family: Cinzel, serif;
+  font-size: 10px;
+  letter-spacing: .14em;
+  cursor: pointer;
+}
+
+.music-button:hover { background: #f1e2d8; }
+
+.music-note {
+  color: var(--muted);
+  font-size: 15px;
+  font-style: italic;
+  margin-top: 10px;
+}
+
+footer {
+  padding: 40px 0 10px;
+  text-align: center;
+  color: var(--muted);
+  font-style: italic;
+}
+
+footer .script { font-size: 42px; }
+
+/* Lightbox */
+#lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(38,28,25,.9);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 25px;
+}
+
+#lightbox.show { display: flex; }
+
+#lightbox img {
+  max-width: min(90vw, 850px);
+  max-height: 85vh;
+  object-fit: contain;
+  border: 8px solid #fffaf2;
+  box-shadow: 0 15px 50px #0008;
+}
+
+#lightbox button {
+  position: absolute;
+  top: 18px;
+  right: 25px;
+  border: 0;
+  color: white;
+  background: transparent;
+  font-size: 38px;
+  cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 650px) {
+  body::before { inset: 5px; }
+  .site-shell { width: calc(100% - 22px); margin: 15px auto; padding: 7px; }
+  .site-inner { padding: 22px 17px; }
+  .hero { min-height: 460px; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 13px; }
+  .attentions-grid { grid-template-columns: repeat(2, 1fr); }
+  .surprises { grid-template-columns: 1fr; }
+  .letter p { font-size: 19px; }
+  .timer { gap: 5px; }
+  .time-unit { min-width: 62px; padding: 10px 4px; }
+  .time-unit strong { font-size: 22px; }
+  .time-unit span { font-size: 8px; }
+  .envelope { height: 250px; }
+}
+
+@media (max-width: 380px) {
+  .gallery-grid { grid-template-columns: 1fr 1fr; }
+  .attentions-grid { gap: 8px; }
+  .attention { padding: 14px 8px; }
+}
 </style>
 </head>
+
 <body>
 
-<div id="birthday-gate">
- <div class="gate-card">
-  <div class="eyebrow">Une surprise pour Faustine</div>
-  <div class="envelope">💌</div>
-  <h1 class="gate-title">Encore un tout petit peu…</h1>
-  <p class="gate-copy">Le plus joli des cadeaux s'ouvrira à minuit. Garde ton cœur prêt, ma chérie. ♡</p>
-  <div class="countdown">
-   <div class="time"><strong id="cd-days">00</strong><span>JOURS</span></div>
-   <div class="time"><strong id="cd-hours">00</strong><span>HEURES</span></div>
-   <div class="time"><strong id="cd-minutes">00</strong><span>MINUTES</span></div>
-   <div class="time"><strong id="cd-seconds">00</strong><span>SECONDES</span></div>
+<!-- COMPTE À REBOURS -->
+<section id="countdown-screen">
+  <div class="countdown-card">
+    <div class="eyebrow">Une invitation très particulière</div>
+    <div class="ornament">✧ ❦ ✧</div>
+    <div class="script">À l'occasion d'un jour merveilleux</div>
+    <h1>Le bal de Faustine</h1>
+    <p class="countdown-note">La soirée commencera lorsque l'horloge sonnera minuit…</p>
+
+    <div class="timer" aria-label="Compte à rebours">
+      <div class="time-unit"><strong id="days">00</strong><span>JOURS</span></div>
+      <div class="time-unit"><strong id="hours">00</strong><span>HEURES</span></div>
+      <div class="time-unit"><strong id="minutes">00</strong><span>MINUTES</span></div>
+      <div class="time-unit"><strong id="seconds">00</strong><span>SECONDES</span></div>
+    </div>
+
+    <div class="eyebrow">23 novembre 2026</div>
+    <div class="ornament">❧</div>
   </div>
-  <div class="gate-note">Avec tout mon amour ♡</div>
- </div>
-</div>
-
-<header class="hero">
- <div class="hero-content">
-  <div class="eyebrow">Une petite surprise, rien que pour toi</div>
-  <h1>Faustine</h1>
-  <p>Pour tes 18 ans, j'ai voulu t'offrir autre chose qu'un cadeau : un petit endroit rempli d'amour, de souvenirs et de tout ce que les mots n'arrivent pas toujours à dire.</p>
-  <button class="primary" onclick="document.querySelector('#lettre').scrollIntoView({behavior:'smooth'})">Ouvre ton cadeau ♡</button>
- </div>
-</header>
-
-<main>
-<section class="section" id="lettre">
- <div class="section-head"><div class="kicker">Quelques mots pour toi</div><h2>Ma chérie,</h2><p>Une lettre que tu peux relire autant de fois que tu le voudras.</p></div>
- <article class="paper letter">
-  <p>Je ne sais pas si un site peut réussir à montrer tout ce que l'on ressent pour quelqu'un. Mais je voulais créer quelque chose à la hauteur de la place que tu as dans ma vie.</p>
-  <p>Depuis le 8 mai 2023 à 17h40, il y a une date et une heure que je garde précieusement. Ce jour-là, notre histoire a commencé à s'écrire, et je suis heureux de pouvoir continuer à en remplir les pages avec toi.</p>
-  <p>Aujourd'hui, tu as 18 ans. Une nouvelle page s'ouvre devant toi, avec des rêves à réaliser, des découvertes et plein de belles choses à vivre. J'espère être là pour t'encourager, te faire sourire, te soutenir et partager encore beaucoup de souvenirs à tes côtés.</p>
-  <p>Merci d'être toi, ma chérie. N'oublie jamais à quel point tu mérites d'être heureuse.</p>
-  <p class="signature">Joyeux anniversaire, mon amour. ♡</p>
- </article>
 </section>
 
-<section class="section">
- <div class="section-head"><div class="kicker">Le début de nous</div><h2>Notre petite histoire</h2><p>Le plus beau des albums est celui qui continue de se remplir.</p></div>
- <div class="timeline">
-  <div class="moment"><span class="dot"></span><div><h3>8 mai 2023 · 17h40</h3><p>Le début de notre histoire. Une date et une heure qui auront toujours une place particulière dans mon cœur.</p></div></div>
-  <div class="moment"><span class="dot"></span><div><h3>Tous ces instants à deux</h3><p>Les souvenirs, les sourires, les petites habitudes et tous ces moments qui n'appartiennent qu'à nous.</p></div></div>
-  <div class="moment"><span class="dot"></span><div><h3>23 novembre 2026</h3><p>Ton 18e anniversaire. Un nouveau chapitre commence.</p></div></div>
- </div>
+<!-- ENVELOPPE -->
+<section id="invitation-screen" class="hidden">
+  <div class="envelope-scene">
+    <div class="invitation-heading">
+      <div class="eyebrow">Une missive vous est destinée</div>
+      <div class="script">À la très chère Faustine</div>
+      <div class="ornament">✧ ❦ ✧</div>
+    </div>
+
+    <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="Ouvrir l'invitation">
+      <div class="envelope-back"></div>
+      <div class="envelope-letter">
+        <div class="eyebrow">Invitation officielle</div>
+        <div class="script">Faustine</div>
+        <p>POUR CÉLÉBRER SES DIX-HUIT ANS</p>
+        <div class="ornament">❦</div>
+        <p>23 NOVEMBRE 2026</p>
+      </div>
+      <div class="envelope-front"></div>
+      <div class="envelope-flap"></div>
+      <div class="wax-seal">F</div>
+    </div>
+
+    <p class="open-instruction">Une jolie surprise vous attend…</p>
+    <button class="open-button" id="open-invitation">Ouvrir l'invitation</button>
+  </div>
 </section>
 
-<section class="section" id="galerie">
- <div class="section-head"><div class="kicker">Nos instants précieux</div><h2>Notre album de souvenirs</h2><p>Chaque photo raconte un petit morceau de notre histoire.</p></div>
- <div class="polaroids" id="photo-gallery"></div>
-</section>
+<!-- SITE PRINCIPAL -->
+<main id="main-site">
+  <div class="site-shell">
+    <div class="site-inner">
 
-<section class="section">
- <div class="section-head"><div class="kicker">À ouvrir une par une</div><h2>18 raisons de t'aimer</h2><p>Touche les cartes pour découvrir les petits mots cachés.</p></div>
- <div class="reasons" id="reasons"></div>
-</section>
+      <header class="hero">
+        <div class="eyebrow">Une journée digne d'un conte</div>
+        <div class="ornament">✧ ❦ ✧</div>
+        <div class="script">La saison des merveilles</div>
+        <h1>Faustine</h1>
+        <div class="age">XVIII</div>
+        <div class="eyebrow">Dix-huit printemps</div>
+        <p class="subtitle">Et mille belles choses à venir…</p>
+        <div class="hero-date">23 · NOVEMBRE · 2026</div>
+        <div class="ornament">❧</div>
+      </header>
 
-<section class="section">
- <div class="section-head"><div class="kicker">Une petite attention</div><h2>Un mot juste pour toi</h2></div>
- <div style="text-align:center">
-  <button class="primary" onclick="surpriseMessage()">Ouvre ton petit message ♡</button>
-  <p id="surprise-message"></p>
- </div>
-</section>
+      <!-- LETTRE -->
+      <section class="section">
+        <div class="section-heading">
+          <div class="eyebrow">Quelques mots rien que pour toi</div>
+          <h2>Une lettre de cœur</h2>
+          <div class="script">À lire doucement…</div>
+          <div class="ornament">✧ ❦ ✧</div>
+        </div>
 
-<section class="section">
- <div class="final">
-  <div class="kicker" style="color:#e5c2b5">Pour tes 18 ans, Faustine</div>
-  <h2>Le meilleur reste à écrire.</h2>
-  <p>Si je pouvais te faire un vœu, ce serait que tu puisses te voir un instant avec mes yeux : tu comprendrais à quel point tu es précieuse. Joyeux 18 ans, ma chérie. Merci de faire partie de mon histoire. Je t'aime. ♡</p>
-  <div class="date">23 · 11 · 2026</div>
- </div>
-</section>
-<footer>FAIT AVEC AMOUR, POUR FAUSTINE ♡</footer>
+        <article class="letter">
+          <p class="salutation">Ma chère Faustine,</p>
+
+          <p>
+            Aujourd'hui est un jour un peu particulier.
+            Aujourd'hui, tu as 18 ans.
+          </p>
+
+          <p>
+            J'aurais pu simplement t'offrir un cadeau, un bouquet de fleurs
+            ou quelques mots sur une jolie carte. Mais j'avais envie de faire
+            quelque chose de différent, quelque chose que tu pourrais garder
+            et retrouver quand tu en aurais envie.
+          </p>
+
+          <p>
+            Je voulais que cette journée soit à ton image : belle, douce et
+            pleine de petites attentions. J'espère que cette nouvelle année
+            t'apportera tout ce dont tu rêves, beaucoup de bonheur et des
+            milliers de raisons de sourire.
+          </p>
+
+          <p>
+            Profite de tes 18 ans, de chaque instant et de tout ce qui t'attend.
+            Tu mérites que cette journée soit aussi jolie que tu peux l'imaginer.
+          </p>
+
+          <p>
+            Joyeux anniversaire, ma chérie. ♡
+          </p>
+
+          <div class="signature">AVEC TOUTE MON AFFECTION</div>
+        </article>
+      </section>
+
+      <!-- GALERIE -->
+      <section class="section">
+        <div class="section-heading">
+          <div class="eyebrow">Quelques instants précieux</div>
+          <h2>L'album de Faustine</h2>
+          <div class="script">De jolis souvenirs à conserver</div>
+          <div class="ornament">✧ ❦ ✧</div>
+        </div>
+
+        <div id="gallery" class="gallery-grid">
+          <div class="gallery-empty">
+            L'album se prépare… Ajoute tes photos dans le dossier images
+            pour les voir apparaître ici.
+          </div>
+        </div>
+      </section>
+
+      <!-- 18 ATTENTIONS -->
+      <section class="section">
+        <div class="section-heading">
+          <div class="eyebrow">En l'honneur de tes dix-huit ans</div>
+          <h2>18 petites attentions</h2>
+          <div class="script">18 pensées pour cette journée</div>
+          <div class="ornament">✧ ❦ ✧</div>
+        </div>
+
+        <div class="attentions-grid" id="attentions"></div>
+      </section>
+
+      <!-- SURPRISES -->
+      <section class="section">
+        <div class="section-heading">
+          <div class="eyebrow">Quelques secrets du bal</div>
+          <h2>Les petites surprises</h2>
+          <div class="script">À découvrir une à une…</div>
+          <div class="ornament">✧ ❦ ✧</div>
+        </div>
+
+        <div class="surprises">
+          <div class="surprise">
+            <div class="surprise-icon">❦</div>
+            <div class="eyebrow">Première surprise</div>
+            <p>Un petit mot</p>
+            <button onclick="revealSurprise(0)">Découvrir</button>
+            <div class="surprise-message" id="surprise-0" hidden>
+              Que cette journée soit remplie de douceur, de rires et de jolis moments.
+            </div>
+          </div>
+
+          <div class="surprise">
+            <div class="surprise-icon">✧</div>
+            <div class="eyebrow">Deuxième surprise</div>
+            <p>Un vœu pour toi</p>
+            <button onclick="revealSurprise(1)">Découvrir</button>
+            <div class="surprise-message" id="surprise-1" hidden>
+              Que tes rêves les plus chers trouvent un chemin jusqu'à toi.
+            </div>
+          </div>
+
+          <div class="surprise">
+            <div class="surprise-icon">♡</div>
+            <div class="eyebrow">Troisième surprise</div>
+            <p>Une dernière pensée</p>
+            <button onclick="revealSurprise(2)">Découvrir</button>
+            <div class="surprise-message" id="surprise-2" hidden>
+              N'oublie jamais à quel point tu mérites les belles choses de la vie.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MUSIQUE -->
+      <section class="section">
+        <div class="section-heading">
+          <div class="eyebrow">La musique du bal</div>
+          <h2>Une valse pour toi</h2>
+          <div class="script">Que la fête commence…</div>
+          <div class="ornament">✧ ❦ ✧</div>
+        </div>
+
+        <div class="music-panel">
+          <div class="script">Une mélodie à savourer</div>
+          <p>Pour accompagner cette jolie invitation.</p>
+          <audio id="birthday-music" preload="none" loop>
+            <source src="music/ambiance.mp3" type="audio/mpeg">
+          </audio>
+          <button class="music-button" id="music-toggle">♫ Écouter la musique</button>
+          <div class="music-note" id="music-status">
+            Appuie pour lancer la mélodie.
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <div class="ornament">✧ ❦ ✧</div>
+        <div class="script">Joyeux anniversaire, Faustine</div>
+        <p>Que tes 18 ans soient le début d'un merveilleux chapitre.</p>
+        <div class="eyebrow">23 novembre 2026</div>
+      </footer>
+
+    </div>
+  </div>
 </main>
 
-<div class="lightbox" id="lightbox" onclick="this.classList.remove('active')">
- <img id="lightbox-image" src="" alt="Souvenir">
- <p>Un souvenir que je garde dans mon cœur ♡</p>
-</div>
-
-<div class="music">
- <label>♫ <input id="musicfile" type="file" accept="audio/*" style="width:125px"></label>
- <button id="play" style="border:0;background:none;color:#713f4b">▶</button>
- <audio id="audio" loop></audio>
+<!-- AGRANDISSEMENT DES PHOTOS -->
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Photo agrandie">
+  <button id="close-lightbox" aria-label="Fermer">&times;</button>
+  <img id="lightbox-image" src="" alt="Souvenir de Faustine">
 </div>
 
 <script>
-// Aperçu créateur : ajouter ?preview=1 à l'URL.
-// Le compte à rebours utilise l'heure locale de l'appareil.
-const previewMode = new URLSearchParams(location.search).get("preview") === "1";
-const target = new Date(2026, 10, 23, 0, 0, 0);
-const gate = document.getElementById("birthday-gate");
-let unlocked = false;
+/* -------------------------------------------------
+   DATE ET OUVERTURE AUTOMATIQUE
+   La date utilise l'heure locale de l'appareil.
+------------------------------------------------- */
 
-function unlockSite(){
- if(unlocked) return;
- unlocked = true;
- gate.classList.add("hidden");
- document.body.classList.remove("is-locked");
- setTimeout(()=>gate.remove(),1600);
-}
-function updateCountdown(){
- const diff=target.getTime()-Date.now();
- if(diff<=0){unlockSite();return}
- const values=[
-  Math.floor(diff/86400000),
-  Math.floor(diff%86400000/3600000),
-  Math.floor(diff%3600000/60000),
-  Math.floor(diff%60000/1000)
- ];
- ["cd-days","cd-hours","cd-minutes","cd-seconds"].forEach((id,i)=>{
-  document.getElementById(id).textContent=String(values[i]).padStart(2,"0");
- });
-}
-if(previewMode || Date.now()>=target.getTime()) unlockSite();
-else {updateCountdown();setInterval(updateCountdown,1000);}
+const birthday = new Date(2026, 10, 23, 0, 0, 0);
+const countdownScreen = document.getElementById("countdown-screen");
+const invitationScreen = document.getElementById("invitation-screen");
+const mainSite = document.getElementById("main-site");
+const envelope = document.getElementById("envelope");
 
-// Galerie automatique : images/images.json
-async function loadGallery(){
- const gallery=document.getElementById("photo-gallery");
- try{
-  const response=await fetch("images/images.json");
-  if(!response.ok) throw new Error("images.json introuvable");
-  const photos=await response.json();
-  photos.forEach((filename,index)=>{
-   const figure=document.createElement("figure");
-   figure.className="polaroid";
-   figure.style.setProperty("--r",index%2===0?"-2deg":"2deg");
-   const frame=document.createElement("div");
-   frame.className="photo";
-   const img=document.createElement("img");
-   img.src="images/"+encodeURIComponent(filename);
-   img.alt="Souvenir avec Faustine";
-   img.loading="lazy";
-   img.onerror=()=>figure.remove();
-   img.onclick=()=>{
-    document.getElementById("lightbox-image").src=img.src;
-    document.getElementById("lightbox").classList.add("active");
-   };
-   frame.appendChild(img);
-   const caption=document.createElement("figcaption");
-   caption.textContent="Un instant à nous ♡";
-   figure.append(frame,caption);
-   gallery.appendChild(figure);
-  });
-  if(!photos.length) gallery.textContent="Nos souvenirs arrivent bientôt ♡";
- }catch(e){
-  gallery.textContent="Ajoute tes photos dans images/ et leurs noms dans images/images.json ♡";
- }
+const previewMode = new URLSearchParams(window.location.search).get("preview") === "1";
+
+let invitationStarted = false;
+let invitationOpened = false;
+
+function startInvitation() {
+  if (invitationStarted) return;
+  invitationStarted = true;
+
+  countdownScreen.classList.add("hidden");
+  invitationScreen.classList.remove("hidden");
+
+  // En mode aperçu, l'invitation est immédiatement disponible.
 }
+
+function openInvitation() {
+  if (invitationOpened) return;
+  invitationOpened = true;
+
+  envelope.classList.add("open");
+
+  setTimeout(() => {
+    invitationScreen.classList.add("dismissed");
+    mainSite.classList.add("visible");
+
+    setTimeout(() => {
+      invitationScreen.classList.add("hidden");
+    }, 1400);
+  }, 1700);
+}
+
+function updateCountdown() {
+  const now = new Date();
+  const distance = birthday.getTime() - now.getTime();
+
+  if (previewMode || distance <= 0) {
+    startInvitation();
+    return;
+  }
+
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((distance / (1000 * 60)) % 60);
+  const seconds = Math.floor((distance / 1000) % 60);
+
+  document.getElementById("days").textContent = String(days).padStart(2, "0");
+  document.getElementById("hours").textContent = String(hours).padStart(2, "0");
+  document.getElementById("minutes").textContent = String(minutes).padStart(2, "0");
+  document.getElementById("seconds").textContent = String(seconds).padStart(2, "0");
+}
+
+document.getElementById("open-invitation").addEventListener("click", openInvitation);
+envelope.addEventListener("click", openInvitation);
+envelope.addEventListener("keydown", event => {
+  if (event.key === "Enter" || event.key === " ") {
+    event.preventDefault();
+    openInvitation();
+  }
+});
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+/* -------------------------------------------------
+   LES 18 ATTENTIONS
+------------------------------------------------- */
+
+const attentionTexts = [
+  "Que tes rêves les plus fous deviennent des projets.",
+  "Que tu gardes toujours cette lumière qui est la tienne.",
+  "Que chaque matin t'apporte une nouvelle raison de sourire.",
+  "Que tu rencontres des personnes qui te font grandir.",
+  "Que tu oses les aventures qui te font envie.",
+  "Que tu sois fière de tout le chemin parcouru.",
+  "Que tu n'oublies jamais ta propre valeur.",
+  "Que les petits bonheurs soient nombreux.",
+  "Que tu découvres encore mille choses merveilleuses.",
+  "Que tu aies toujours une bonne raison de rire.",
+  "Que la confiance accompagne chacun de tes pas.",
+  "Que tu trouves de la beauté dans les choses simples.",
+  "Que tes envies aient toujours une place.",
+  "Que cette année t'offre de belles surprises.",
+  "Que tu sois entourée de douceur et de bienveillance.",
+  "Que tu collectionnes les souvenirs heureux.",
+  "Que tu profites pleinement de chaque instant.",
+  "Et surtout, que tu sois heureuse."
+];
+
+const attentionsContainer = document.getElementById("attentions");
+
+attentionTexts.forEach((message, index) => {
+  const card = document.createElement("article");
+  card.className = "attention";
+
+  const number = document.createElement("div");
+  number.className = "attention-number";
+  number.textContent = String(index + 1).padStart(2, "0");
+
+  const text = document.createElement("p");
+  text.textContent = message;
+
+  card.append(number, text);
+  attentionsContainer.appendChild(card);
+});
+
+/* -------------------------------------------------
+   SURPRISES
+------------------------------------------------- */
+
+function revealSurprise(index) {
+  const message = document.getElementById("surprise-" + index);
+  message.hidden = !message.hidden;
+}
+
+/* -------------------------------------------------
+   GALERIE : images/images.json
+------------------------------------------------- */
+
+const gallery = document.getElementById("gallery");
+
+async function loadGallery() {
+  try {
+    const response = await fetch("images/images.json", { cache: "no-store" });
+    if (!response.ok) throw new Error("Fichier images.json introuvable");
+
+    const filenames = await response.json();
+
+    if (!Array.isArray(filenames) || filenames.length === 0) {
+      throw new Error("Aucune photo dans la liste");
+    }
+
+    gallery.innerHTML = "";
+
+    filenames.forEach((filename, index) => {
+      if (typeof filename !== "string") return;
+
+      const frame = document.createElement("div");
+      frame.className = "photo-frame";
+
+      const img = document.createElement("img");
+      img.src = "images/" + filename;
+      img.alt = "Souvenir de Faustine " + (index + 1);
+      img.loading = "lazy";
+
+      const caption = document.createElement("div");
+      caption.className = "photo-caption";
+      caption.textContent = "Un joli souvenir";
+
+      frame.append(img, caption);
+
+      img.addEventListener("error", () => {
+        frame.remove();
+      });
+
+      frame.addEventListener("click", () => {
+        openLightbox(img.src);
+      });
+
+      gallery.appendChild(frame);
+    });
+
+    if (!gallery.children.length) {
+      gallery.innerHTML = '<div class="gallery-empty">Aucune photo n’a pu être chargée.</div>';
+    }
+  } catch (error) {
+    gallery.innerHTML =
+      '<div class="gallery-empty">Ajoute tes photos dans le dossier <strong>images</strong> et leurs noms dans <strong>images.json</strong> pour composer cet album.</div>';
+  }
+}
+
 loadGallery();
 
-// 18 raisons
-const reasons=[
-["Ton sourire","Il rend les journées plus belles."],
-["Ta présence","Les moments simples deviennent spéciaux avec toi."],
-["Ta douceur","Elle rend le monde plus joli."],
-["Ta personnalité","C'est toi, et c'est précieux."],
-["Ton rire","Un son que je veux entendre encore."],
-["Ta façon d'être","Tu comptes énormément pour moi."],
-["Nos souvenirs","Ils me rappellent notre belle histoire."],
-["Tes attentions","Elles restent longtemps dans mon cœur."],
-["Ta beauté","Elle est dans tout ce que tu es."],
-["Ta force","J'espère que tu es fière de toi."],
-["Nos instants","Ils sont précieux parce qu'ils sont avec toi."],
-["Ta voix","Je la reconnaîtrais entre mille."],
-["Tes rêves","J'ai envie de te voir les réaliser."],
-["Ta tendresse","Elle donne envie de te rendre tout cet amour."],
-["Ta spontanéité","Elle rend notre histoire unique."],
-["Ce que tu m'apportes","Tu as une place unique dans ma vie."],
-["Notre chemin","Depuis le 8 mai 2023, tant de pages écrites."],
-["La suite","Il nous reste tant de souvenirs à créer."]
-];
-const reasonGrid=document.getElementById("reasons");
-reasons.forEach((r,i)=>{
- const b=document.createElement("button");
- b.className="reason";
- b.innerHTML='<span class="num">RAISON '+String(i+1).padStart(2,"0")+'</span><span class="front">'+r[0]+'</span><span class="back">'+r[1]+'</span>';
- b.onclick=()=>b.classList.toggle("open");
- reasonGrid.appendChild(b);
-});
+/* -------------------------------------------------
+   LIGHTBOX
+------------------------------------------------- */
 
-// Messages surprises
-const loveMessages=[
-"Tu es mon plus joli hasard. ❤️",
-"Je choisirais encore et toujours toi.",
-"J'espère te faire sourire autant que tu me fais sourire.",
-"Depuis le 8 mai 2023, mon histoire a une page préférée : toi.",
-"N'oublie jamais que tu es précieuse à mes yeux.",
-"J'ai encore tellement de souvenirs à créer avec toi.",
-"Je t'aime, ma chérie. ♡"
-];
-function surpriseMessage(){
- const msg=loveMessages[Math.floor(Math.random()*loveMessages.length)];
- document.getElementById("surprise-message").textContent=msg;
+const lightbox = document.getElementById("lightbox");
+const lightboxImage = document.getElementById("lightbox-image");
+
+function openLightbox(src) {
+  lightboxImage.src = src;
+  lightbox.classList.add("show");
 }
 
-// Cœurs flottants
-function createHeart(){
- const h=document.createElement("span");
- h.className="floating-heart";
- h.textContent=Math.random()>.5?"♡":"♥";
- h.style.left=Math.random()*100+"vw";
- h.style.fontSize=(14+Math.random()*20)+"px";
- document.body.appendChild(h);
- setTimeout(()=>h.remove(),6000);
+function closeLightbox() {
+  lightbox.classList.remove("show");
+  lightboxImage.src = "";
 }
-setInterval(createHeart,1800);
 
-// Musique ajoutée par le créateur
-const audio=document.getElementById("audio");
-const play=document.getElementById("play");
-document.getElementById("musicfile").addEventListener("change",e=>{
- const file=e.target.files[0];
- if(!file)return;
- audio.src=URL.createObjectURL(file);
- audio.play().then(()=>play.textContent="Ⅱ").catch(()=>{});
+document.getElementById("close-lightbox").addEventListener("click", closeLightbox);
+
+lightbox.addEventListener("click", event => {
+  if (event.target === lightbox) closeLightbox();
 });
-play.onclick=()=>{
- if(!audio.src){document.getElementById("musicfile").click();return}
- if(audio.paused){audio.play();play.textContent="Ⅱ"}
- else{audio.pause();play.textContent="▶"}
-};
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") closeLightbox();
+});
+
+/* -------------------------------------------------
+   MUSIQUE : lecture déclenchée par un clic
+------------------------------------------------- */
+
+const music = document.getElementById("birthday-music");
+const musicButton = document.getElementById("music-toggle");
+const musicStatus = document.getElementById("music-status");
+
+musicButton.addEventListener("click", async () => {
+  if (music.paused) {
+    try {
+      await music.play();
+      musicButton.textContent = "Ⅱ Mettre en pause";
+      musicStatus.textContent = "La mélodie accompagne maintenant ton bal.";
+    } catch (error) {
+      musicStatus.textContent =
+        "Impossible de lancer la musique. Vérifie le fichier music/ambiance.mp3.";
+    }
+  } else {
+    music.pause();
+    musicButton.textContent = "♫ Écouter la musique";
+    musicStatus.textContent = "La musique est en pause.";
+  }
+});
+
+music.addEventListener("ended", () => {
+  musicButton.textContent = "♫ Écouter la musique";
+});
 </script>
+
 </body>
 </html>
