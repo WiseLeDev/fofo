@@ -1,9 +1,8 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f8f1e9">
   <title>Pour Faustine — 18 ans</title>
 
@@ -29,7 +28,6 @@
 
     html {
       scroll-behavior: smooth;
-      touch-action: pan-y;
     }
 
     body {
@@ -103,10 +101,10 @@
 
     .countdown-number {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(35px, 8vw, 55px);
+      font-size: clamp(26px, 7vw, 48px);
       color: var(--gold);
       margin: 22px 0;
-      letter-spacing: 5px;
+      letter-spacing: 3px;
     }
 
     /* ENVELOPPE */
@@ -190,7 +188,6 @@
 
     .wax-seal {
       position: absolute;
-      z-index: 6;
       left: 50%;
       top: 55%;
       transform: translate(-50%, -50%);
@@ -415,6 +412,7 @@
       overflow-x: auto;
       scroll-snap-type: x mandatory;
       scroll-behavior: smooth;
+      touch-action: pan-x pan-y;
       padding: 15px 5px 25px;
       scrollbar-width: thin;
       scrollbar-color: var(--gold) #eadfd8;
@@ -721,7 +719,7 @@
     <h1 class="envelope-heading">Ma chère Faustine</h1>
     <p class="envelope-subtitle">Une petite surprise t'attend...</p>
 
-    <div class="envelope" id="envelope" onclick="openInvitation()">
+    <div class="envelope" id="envelope">
       <div class="envelope-back"></div>
       <div class="envelope-letter"></div>
       <div class="envelope-flap"></div>
@@ -736,7 +734,7 @@
       Pense à baisser légèrement le volume avant de continuer.
     </div>
 
-    <button class="elegant-button" onclick="openInvitation()">
+    <button class="elegant-button" id="openButton">
       Ouvrir mon invitation
     </button>
   </div>
@@ -868,7 +866,7 @@
       <p>Un petit fond musical pour accompagner ces quelques mots.</p>
 
       <button class="music-button" id="musicToggle">
-        ♫ Mettre la musique en pause
+        ♫ Lancer la musique
       </button>
     </section>
 
@@ -879,11 +877,11 @@
       <p>Il y a encore quelques surprises cachées par ici.</p>
 
       <div class="easter-icons">
-        <button class="easter-button" onclick="showPopup('Un petit cœur pour te rappeler que tu comptes énormément. ♡')">♡</button>
-        <button class="easter-button" onclick="showPopup('J'espère que tu garderas toujours cette jolie lumière qui est la tienne. ✨')">✧</button>
-        <button class="easter-button" onclick="showPopup('Une petite fleur pour une personne qui mérite plein de jolies choses. 🌸')">❀</button>
-        <button class="easter-button" onclick="showPopup('Au cas où tu ne l'aurais pas encore compris : je t'aime. ♡')">♥</button>
-        <button class="easter-button" onclick="showPopup('Et ce n'est pas fini... Joyeux 18 ans, Faustine !')">☆</button>
+        <button class="easter-button" aria-label="Surprise 1" data-message="Un petit cœur pour te rappeler que tu comptes énormément. ♡">♡</button>
+        <button class="easter-button" aria-label="Surprise 2" data-message="J'espère que tu garderas toujours cette jolie lumière qui est la tienne. ✨">✧</button>
+        <button class="easter-button" aria-label="Surprise 3" data-message="Une petite fleur pour une personne qui mérite plein de jolies choses. 🌸">❀</button>
+        <button class="easter-button" aria-label="Surprise 4" data-message="Au cas où tu ne l'aurais pas encore compris : je t'aime. ♡">♥</button>
+        <button class="easter-button" aria-label="Surprise 5" data-message="Et ce n'est pas fini... Joyeux 18 ans, Faustine !">☆</button>
       </div>
     </div>
 
@@ -895,13 +893,13 @@
   </main>
 
   <!-- POPUP -->
-  <div class="popup-overlay" id="popupOverlay" onclick="closePopup(event)">
+  <div class="popup-overlay" id="popupOverlay">
     <div class="popup-card">
-      <button class="popup-close" onclick="hidePopup()">×</button>
+      <button class="popup-close" id="popupClose" aria-label="Fermer">×</button>
       <h3>Un petit mot pour toi</h3>
       <p id="popupMessage"></p>
       <div class="gold-line"></div>
-      <button class="elegant-button" onclick="hidePopup()">Refermer</button>
+      <button class="elegant-button" id="popupDone">Refermer</button>
     </div>
   </div>
 
@@ -913,23 +911,33 @@
 
   <script>
     /* --------------------------------
-       DATE ET COMPTE À REBOURS
+       ÉLÉMENTS ET ÉTAT (déclarés en premier)
     -------------------------------- */
 
     const birthday = new Date(2026, 10, 23, 0, 0, 0);
     const countdownScreen = document.getElementById('countdownScreen');
     const envelopeScreen = document.getElementById('envelopeScreen');
     const mainSite = document.getElementById('mainSite');
-
+    const music = document.getElementById('backgroundMusic');
+    const musicToggle = document.getElementById('musicToggle');
     const previewMode = new URLSearchParams(window.location.search).get('preview') === '1';
 
+    let invitationOpened = false;
+    let countdownTimer = null;
+    let musicFailed = false;
+
+
+    /* --------------------------------
+       COMPTE À REBOURS
+    -------------------------------- */
+
     function updateCountdown() {
-      const now = new Date();
-      const difference = birthday - now;
+      const difference = birthday - new Date();
 
       if (previewMode || difference <= 0) {
+        clearInterval(countdownTimer);
         countdownScreen.classList.add('hidden');
-        envelopeScreen.classList.remove('hidden');
+        if (!invitationOpened) envelopeScreen.classList.remove('hidden');
         return;
       }
 
@@ -943,15 +951,14 @@
     }
 
     updateCountdown();
-    setInterval(updateCountdown, 1000);
+    if (!previewMode && birthday - new Date() > 0) {
+      countdownTimer = setInterval(updateCountdown, 1000);
+    }
 
 
     /* --------------------------------
        OUVERTURE DE L'INVITATION
     -------------------------------- */
-
-    let invitationOpened = false;
-    const music = document.getElementById('backgroundMusic');
 
     function openInvitation() {
       if (invitationOpened) return;
@@ -962,28 +969,32 @@
 
       music.volume = 0.30;
 
-      // La musique est lancée après le clic de la personne.
+      // La musique est lancée suite au clic de la personne (obligatoire pour les navigateurs).
       music.play().then(() => {
-        document.getElementById('musicToggle').textContent = '♫ Mettre la musique en pause';
+        musicToggle.textContent = '♫ Mettre la musique en pause';
       }).catch(() => {
-        document.getElementById('musicToggle').textContent = '♫ Lancer la musique';
+        musicToggle.textContent = musicFailed ? '♫ Musique indisponible' : '♫ Lancer la musique';
       });
 
       setTimeout(() => {
         envelopeScreen.classList.add('hidden');
         mainSite.classList.remove('hidden');
         window.scrollTo(0, 0);
+        // La galerie était masquée au chargement : on recalcule le compteur maintenant.
+        requestAnimationFrame(updateGalleryCount);
       }, 1100);
     }
 
+    document.getElementById('envelope').addEventListener('click', openInvitation);
+    document.getElementById('openButton').addEventListener('click', openInvitation);
+
 
     /* --------------------------------
-       GALERIE : CHARGEMENT DES 9 PHOTOS
+       GALERIE
     -------------------------------- */
 
     const galleryTrack = document.getElementById('galleryTrack');
     const galleryCount = document.getElementById('galleryCount');
-    let galleryItems = [];
 
     async function loadGallery() {
       let photos = [];
@@ -1010,7 +1021,7 @@
         figure.className = 'gallery-item';
 
         const img = document.createElement('img');
-        img.src = 'images/' + filename;
+        img.src = 'images/' + encodeURIComponent(filename);
         img.alt = 'Souvenir ' + (index + 1);
         img.loading = index < 3 ? 'eager' : 'lazy';
         img.draggable = false;
@@ -1024,26 +1035,33 @@
         galleryTrack.appendChild(figure);
       });
 
-      galleryItems = Array.from(galleryTrack.children);
       updateGalleryCount();
     }
 
     function updateGalleryCount() {
-      galleryItems = Array.from(galleryTrack.children);
+      const items = Array.from(galleryTrack.children);
 
-      if (!galleryItems.length) {
+      if (!items.length) {
         galleryCount.textContent = 'Aucune photo trouvée';
         return;
       }
 
-      const center = galleryTrack.scrollLeft + galleryTrack.clientWidth / 2;
+      const trackRect = galleryTrack.getBoundingClientRect();
+
+      // Galerie encore masquée : on garde un compteur par défaut.
+      if (trackRect.width === 0) {
+        galleryCount.textContent = `1 / ${items.length}`;
+        return;
+      }
+
+      const center = trackRect.left + trackRect.width / 2;
 
       let closestIndex = 0;
       let closestDistance = Infinity;
 
-      galleryItems.forEach((item, index) => {
-        const itemCenter = item.offsetLeft + item.offsetWidth / 2;
-        const distance = Math.abs(itemCenter - center);
+      items.forEach((item, index) => {
+        const rect = item.getBoundingClientRect();
+        const distance = Math.abs(rect.left + rect.width / 2 - center);
 
         if (distance < closestDistance) {
           closestDistance = distance;
@@ -1051,15 +1069,15 @@
         }
       });
 
-      galleryCount.textContent = `${closestIndex + 1} / ${galleryItems.length}`;
+      galleryCount.textContent = `${closestIndex + 1} / ${items.length}`;
     }
 
     function moveGallery(direction) {
       const firstItem = galleryTrack.querySelector('.gallery-item');
       if (!firstItem) return;
 
-      const gap = 18;
-      const distance = firstItem.offsetWidth + gap;
+      const gap = parseFloat(getComputedStyle(galleryTrack).columnGap) || 18;
+      const distance = firstItem.getBoundingClientRect().width + gap;
 
       galleryTrack.scrollBy({
         left: direction * distance,
@@ -1069,7 +1087,8 @@
 
     document.getElementById('galleryPrev').addEventListener('click', () => moveGallery(-1));
     document.getElementById('galleryNext').addEventListener('click', () => moveGallery(1));
-    galleryTrack.addEventListener('scroll', updateGalleryCount);
+    galleryTrack.addEventListener('scroll', updateGalleryCount, { passive: true });
+    window.addEventListener('resize', updateGalleryCount);
 
     loadGallery();
 
@@ -1100,8 +1119,8 @@
     ];
 
     const attentionTitles = [
-      "Ton sourire", "Tes rêves", "Ta valeur",
-      "Ta lumière", "Nos moments", "Ton avenir",
+      "Ton sourire", "Tes beaux moments", "Ta valeur",
+      "Ta présence", "Nos moments", "Tes rêves",
       "Ton rythme", "Tes rires", "La douceur",
       "Nos souvenirs", "Toi", "Ta place",
       "Les surprises", "Ta fierté", "Ton étincelle",
@@ -1127,27 +1146,44 @@
        POPUPS
     -------------------------------- */
 
+    const popupOverlay = document.getElementById('popupOverlay');
+
     function showPopup(message) {
       document.getElementById('popupMessage').textContent = message;
-      document.getElementById('popupOverlay').classList.add('show');
+      popupOverlay.classList.add('show');
     }
 
     function hidePopup() {
-      document.getElementById('popupOverlay').classList.remove('show');
+      popupOverlay.classList.remove('show');
     }
 
-    function closePopup(event) {
-      if (event.target.id === 'popupOverlay') hidePopup();
-    }
+    popupOverlay.addEventListener('click', event => {
+      if (event.target === popupOverlay) hidePopup();
+    });
+    document.getElementById('popupClose').addEventListener('click', hidePopup);
+    document.getElementById('popupDone').addEventListener('click', hidePopup);
+
+    document.querySelectorAll('.easter-button').forEach(button => {
+      button.addEventListener('click', () => showPopup(button.dataset.message));
+    });
+
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape') hidePopup();
+    });
 
 
     /* --------------------------------
        MUSIQUE : PAUSE / REPRISE
     -------------------------------- */
 
-    const musicToggle = document.getElementById('musicToggle');
+    music.addEventListener('error', () => {
+      musicFailed = true;
+      musicToggle.textContent = '♫ Musique indisponible';
+    });
 
     musicToggle.addEventListener('click', () => {
+      if (musicFailed) return;
+
       if (music.paused) {
         music.play().then(() => {
           musicToggle.textContent = '♫ Mettre la musique en pause';
@@ -1183,7 +1219,7 @@
     function displayFloatingMessage() {
       const now = Date.now();
 
-      if (window.scrollY < 250 || now - lastMessageTime < 18000) return;
+      if (!invitationOpened || window.scrollY < 250 || now - lastMessageTime < 18000) return;
 
       lastMessageTime = now;
       floatingBox.textContent = floatingMessages[messageIndex];
@@ -1197,16 +1233,6 @@
     }
 
     window.addEventListener('scroll', displayFloatingMessage, { passive: true });
-
-
-    /* --------------------------------
-       RACCOURCI CLAVIER : FERMER POPUP
-    -------------------------------- */
-
-    document.addEventListener('keydown', event => {
-      if (event.key === 'Escape') hidePopup();
-    });
-
   </script>
 
 </body>
